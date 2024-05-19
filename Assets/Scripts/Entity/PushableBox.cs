@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class PushableBox : MovableObject
+{
+  public void PushBox(Vector3 direction)
+  {
+    StartCoroutine(MoveObject(direction));
+  }
+
+  public bool CanPush(Vector3 direction)
+  {
+    GameObject collideObject = GetCollideObject(direction);
+    
+    if (HasObstacleTile(direction) || IsObstacle(collideObject))
+    {
+      return false;
+    }
+
+    return true;
+  }
+  private bool IsObstacle(GameObject gameObj)
+  {
+    if (gameObj == null)
+      return false;
+    
+    if (gameObj.GetComponent<Key>())
+      return false;
+    
+    return true;
+  }
+
+}
