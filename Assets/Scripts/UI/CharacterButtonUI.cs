@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterButtonUI : MonoBehaviour
 {
   [SerializeField] private TextMeshProUGUI remainStepText;
-  [SerializeField] private Character character;
+  [SerializeField] private CharacterType character;
   
   private Vector3 enableScale = new(2, 2, 2);
   private Vector3 disableScale = new(1.5f, 1.5f, 1.5f);
@@ -19,7 +19,7 @@ public class CharacterButtonUI : MonoBehaviour
 
   private void GameInput_OnSwitch(object sender, OnSwitchCharacterEventArgs e)
   {
-    if (PlayerManager.NumPlayer == 1) return;
+    if (CharacterManager.NumCharacter == 1) return;
     ScaleToTarget(e.Character == character ? enableScale : disableScale, scaleDuration);
   }
 

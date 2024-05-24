@@ -8,7 +8,7 @@ public class OnMoveEventArgs : EventArgs
 
 public class OnSwitchCharacterEventArgs : EventArgs
 {
-  public Character Character;
+  public CharacterType Character;
 }
 
 public class OnNextLevelEventArgs : EventArgs

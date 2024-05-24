@@ -82,7 +82,7 @@ public class MovableObject : MonoBehaviour
       foreach (var raycast in raycastHit2D)
       {
         MovableObject movableObject = raycast.collider.gameObject.GetComponent<MovableObject>();
-        if (!movableObject || movableObject is not Player) continue;
+        if (!movableObject || movableObject is not Character) continue;
         raycastHit2D.Remove(raycast);
         break;
       }

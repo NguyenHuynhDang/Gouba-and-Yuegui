@@ -12,12 +12,12 @@ public class GameAsset : MonoBehaviour
     Instance = this;
   }
 
-  public Path getPath()
+  public Path GetPath()
   {
     return path;
   }
 
-  public Path getPathL()
+  public Path GetPathL()
   {
     return pathL;
   }

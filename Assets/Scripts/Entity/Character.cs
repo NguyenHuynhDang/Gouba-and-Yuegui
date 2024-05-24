@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Player : MovableObject
+public class Character : MovableObject
 {
   public event EventHandler OnReachGoal;
   public event EventHandler OnExitGoal;
 
-  [SerializeField] private Character character;
+  [SerializeField] private CharacterType characterType;
   [SerializeField] private Goal goal;
   [SerializeField] private int moveLimit;
 
@@ -25,7 +26,7 @@ public class Player : MovableObject
     collider2D = gameObject.GetComponent<BoxCollider2D>();
   }
   
-  public void MovePlayer(Vector3 direction)
+  public void MoveCharacter(Vector3 direction)
   {
     if (IsMoving) return;
     GameObject collideObject = GetCollideObject(direction);
@@ -46,9 +47,9 @@ public class Player : MovableObject
     return moveLimit - moveStack.Count;
   }
 
-  public Character GetCharacter()
+  public CharacterType GetCharacterType()
   {
-    return character;
+    return characterType;
   }
 
   public bool HasReachGoal()
@@ -91,7 +92,7 @@ public class Player : MovableObject
     if (gameObj.GetComponent<PushableBox>())
       return false;
 
-    if (gameObj.GetComponent<PlayerBox>())
+    if (gameObj.GetComponent<CharacterBox>())
       return false;
 
     if (gameObj.GetComponent<Goal>())
@@ -119,7 +120,7 @@ public class Player : MovableObject
     {
       if (pushableBox)
       {
-        if (pushableBox is PlayerBox {IsEmpty: true} || !pushableBox.CanPush(moveDirection))
+        if (pushableBox is CharacterBox {IsEmpty: true} || !pushableBox.CanPush(moveDirection))
         {
           return false;
         }
@@ -162,11 +163,11 @@ public class Player : MovableObject
     {
       if (curDir == Direction.Left || curDir == Direction.Right)
       {
-        path = Instantiate(GameAsset.Instance.getPath(), transform.position, Quaternion.identity);
+        path = Instantiate(GameAsset.Instance.GetPath(), transform.position, Quaternion.identity);
       }
       else if (curDir == Direction.Up || curDir == Direction.Down)
       {
-        path = Instantiate(GameAsset.Instance.getPath(), transform.position, Quaternion.Euler(0, 0, 90));
+        path = Instantiate(GameAsset.Instance.GetPath(), transform.position, Quaternion.Euler(0, 0, 90));
       }
     }
     else
@@ -175,19 +176,19 @@ public class Player : MovableObject
       {
         case Direction.Down when curDir == Direction.Right:
         case Direction.Left when curDir == Direction.Up:
-          path = Instantiate(GameAsset.Instance.getPathL(), transform.position, Quaternion.identity);
+          path = Instantiate(GameAsset.Instance.GetPathL(), transform.position, Quaternion.identity);
           break;
         case Direction.Down when curDir == Direction.Left:
         case Direction.Right when curDir == Direction.Up:
-          path = Instantiate(GameAsset.Instance.getPathL(), transform.position, Quaternion.Euler(0, 0, 90));
+          path = Instantiate(GameAsset.Instance.GetPathL(), transform.position, Quaternion.Euler(0, 0, 90));
           break;
         case Direction.Up when curDir == Direction.Right:
         case Direction.Left when curDir == Direction.Down:
-          path = Instantiate(GameAsset.Instance.getPathL(), transform.position, Quaternion.Euler(0, 0, -90));
+          path = Instantiate(GameAsset.Instance.GetPathL(), transform.position, Quaternion.Euler(0, 0, -90));
           break;
         case Direction.Up when curDir == Direction.Left:
         case Direction.Right when curDir == Direction.Down:
-          path = Instantiate(GameAsset.Instance.getPathL(), transform.position, Quaternion.Euler(0, 0, 180));
+          path = Instantiate(GameAsset.Instance.GetPathL(), transform.position, Quaternion.Euler(0, 0, 180));
           break;
       }
     }

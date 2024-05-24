@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerBox : PushableBox
+public class CharacterBox : PushableBox
 {
   public event EventHandler OnEnter;
   public event EventHandler OnExit;

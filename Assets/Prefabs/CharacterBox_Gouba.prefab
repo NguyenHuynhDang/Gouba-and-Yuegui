@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7609879742775355220}
   - component: {fileID: 3002944100746419145}
   m_Layer: 0
-  m_Name: Player Visual
+  m_Name: Character Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 3032640786568580409}
   - component: {fileID: 3895157453689977138}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,9 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundTilemap: {fileID: 0}
   obstacleTilemap: {fileID: 0}
-  character: 0
+  characterType: 0
   goal: {fileID: 0}
-  pathVisual: {fileID: 3602678932622993484, guid: 23bbf570370e02246b9c5f7f4d378825, type: 3}
   moveLimit: 7
 --- !u!1 &7022044685362221990
 GameObject:
@@ -338,7 +337,7 @@ GameObject:
   - component: {fileID: 6045895145226660378}
   - component: {fileID: 6117053099534639814}
   m_Layer: 0
-  m_Name: PlayerBox_Gouba
+  m_Name: CharacterBox_Gouba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

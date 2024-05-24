@@ -1,5 +1,5 @@
 
-public enum Character
+public enum CharacterType
 {
   Gouba,
   Yuegui

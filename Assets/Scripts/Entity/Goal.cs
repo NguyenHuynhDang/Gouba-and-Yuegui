@@ -5,14 +5,14 @@ public class Goal : MonoBehaviour
 {
   public static event EventHandler OnGameClear;
   
-  public int NumPlayerReach { get; private set; }
+  public int NumCharacterReach { get; private set; }
   
 
   public void OnEnter()
   {
-    NumPlayerReach++;
+    NumCharacterReach++;
     
-    if (NumPlayerReach == PlayerManager.NumPlayer)
+    if (NumCharacterReach == CharacterManager.NumCharacter)
     {
       OnGameClear?.Invoke(this, EventArgs.Empty);
     }
@@ -20,7 +20,7 @@ public class Goal : MonoBehaviour
 
   public void OnExit()
   {
-    NumPlayerReach--;
+    NumCharacterReach--;
   }
 
   public static void ResetStaticData()

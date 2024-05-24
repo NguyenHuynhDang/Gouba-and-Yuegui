@@ -29,13 +29,13 @@ private void Start()
     playerInputActions.Player.Switch1.performed += _ =>
     {
       if (GameManager.IsGamePause) return;
-      OnSwitch1?.Invoke(this, new OnSwitchCharacterEventArgs {Character = Character.Gouba});
+      OnSwitch1?.Invoke(this, new OnSwitchCharacterEventArgs {Character = CharacterType.Gouba});
     };
     
     playerInputActions.Player.Switch2.performed += _ =>
     {
       if (GameManager.IsGamePause) return;
-      OnSwitch2?.Invoke(this, new OnSwitchCharacterEventArgs {Character = Character.Yuegui});
+      OnSwitch2?.Invoke(this, new OnSwitchCharacterEventArgs {Character = CharacterType.Yuegui});
     };
 
     playerInputActions.Player.Replay.performed += _ =>

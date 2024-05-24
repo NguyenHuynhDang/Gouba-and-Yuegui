@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
-  [SerializeField] private Player player;
-  [SerializeField] private PlayerBox playerBox;
+  [SerializeField] private Character player;
+  [SerializeField] private CharacterBox playerBox;
   [SerializeField] private Sprite playerSprite;
   [SerializeField] private Sprite sleepSprite; 
   
@@ -34,7 +34,7 @@ public class PlayerVisual : MonoBehaviour
 
   private void GameInput_OnSwitch(object sender, OnSwitchCharacterEventArgs e)
   {
-    if (PlayerManager.NumPlayer == 1 || isInBox || (player && player.HasReachGoal())) return;
-    spriteRenderer.sprite = player.GetCharacter() != e.Character ? sleepSprite : playerSprite;
+    if (CharacterManager.NumCharacter == 1 || isInBox || (player && player.HasReachGoal())) return;
+    spriteRenderer.sprite = player.GetCharacterType() != e.Character ? sleepSprite : playerSprite;
   }
 }

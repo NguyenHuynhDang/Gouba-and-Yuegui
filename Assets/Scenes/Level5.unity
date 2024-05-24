@@ -7065,7 +7065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df93f37fbb954c4e8d016650ae6c5f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerList:
+  characterList:
   - {fileID: 634854340}
   - {fileID: 1075688507}
   characterUI:

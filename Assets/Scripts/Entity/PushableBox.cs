@@ -20,7 +20,7 @@ public class PushableBox : MovableObject
   }
   private bool IsObstacle(GameObject gameObj)
   {
-    if (gameObj == null)
+    if (!gameObj) // is null
       return false;
     
     if (gameObj.GetComponent<Key>())

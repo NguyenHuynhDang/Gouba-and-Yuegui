@@ -32,9 +32,13 @@ PrefabInstance:
       propertyPath: pathVisual
       value: 
       objectReference: {fileID: 3602678932622993484, guid: 72080cb2747d8ae4997d2c891b419213, type: 3}
+    - target: {fileID: 3895157453689977138, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
+      propertyPath: characterType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7022044685362221990, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
       propertyPath: m_Name
-      value: PlayerBox_Yuegui
+      value: CharacterBox_Yuegui
       objectReference: {fileID: 0}
     - target: {fileID: 7609879742775355220, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
       propertyPath: m_Sprite

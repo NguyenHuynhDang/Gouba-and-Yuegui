@@ -1,31 +1,32 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
-  public static int NumPlayer { get; private set; }
+  public static int NumCharacter { get; private set; }
   
-  [SerializeField] private List<Player> playerList;
+  [SerializeField] private List<Character> characterList;
   [SerializeField] private List<CharacterButtonUI> characterUI;
   [SerializeField] private Transform arrow;
   
-  private Player currentPlayer;
+  private Character currentCharater;
   private CharacterButtonUI currentUI;
   private Vector3 direction;
   
   private void Start()
   {
-    NumPlayer = playerList.Count;
+    NumCharacter = characterList.Count;
     
-    currentPlayer = playerList[0];
+    currentCharater = characterList[0];
     SetArrowParent();
     
     currentUI = characterUI[0];
 
-    for (int i = 0; i < playerList.Count; i++)
+    for (int i = 0; i < characterList.Count; i++)
     {
-      characterUI[i].SetRemainStepText(playerList[i].GetRemainMove());
+      characterUI[i].SetRemainStepText(characterList[i].GetRemainMove());
     }
 
     //GameInput.Instance.OnMove += GameInput_OnMove;
@@ -38,23 +39,23 @@ public class PlayerManager : MonoBehaviour
     direction = GameInput.Instance.GetMovementVector();
     if (direction != Vector3.zero)
     {
-      currentPlayer.MovePlayer(direction);
-      currentUI.SetRemainStepText(currentPlayer.GetRemainMove());
+      currentCharater.MoveCharacter(direction);
+      currentUI.SetRemainStepText(currentCharater.GetRemainMove());
     }
   }
 
   private void GameInput_OnSwitch1(object sender, OnSwitchCharacterEventArgs e)
   {
-    currentPlayer = playerList[0];
+    currentCharater = characterList[0];
     currentUI = characterUI[0];
-    arrow.SetParent(currentPlayer.transform, false); 
+    arrow.SetParent(currentCharater.transform, false); 
   }
 
   private void GameInput_OnSwitch2(object sender, OnSwitchCharacterEventArgs e)
   {
-    if (playerList.Count > 1)
+    if (characterList.Count > 1)
     {
-      currentPlayer = playerList[1];
+      currentCharater = characterList[1];
       currentUI = characterUI[1];
       SetArrowParent();
     }
@@ -62,6 +63,6 @@ public class PlayerManager : MonoBehaviour
   
   private void SetArrowParent()
   {
-    arrow.SetParent(currentPlayer.transform, false);
+    arrow.SetParent(currentCharater.transform, false);
   }
 }

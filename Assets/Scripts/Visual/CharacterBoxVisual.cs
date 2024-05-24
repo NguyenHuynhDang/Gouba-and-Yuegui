@@ -4,7 +4,7 @@ public class PlayerBoxVisual : MonoBehaviour
 { 
   [SerializeField] private Sprite emptyBoxSprite;
   [SerializeField] private Sprite fullBoxSprite;
-  [SerializeField] private PlayerBox playerBox;
+  [SerializeField] private CharacterBox playerBox;
  
   private SpriteRenderer spriteRenderer;
   
