@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class PlayerBoxVisual : MonoBehaviour
+public class CharacterBoxVisual : MonoBehaviour
 { 
   [SerializeField] private Sprite emptyBoxSprite;
   [SerializeField] private Sprite fullBoxSprite;
-  [SerializeField] private CharacterBox playerBox;
+  [SerializeField] private CharacterBox characterBox;
  
   private SpriteRenderer spriteRenderer;
   
@@ -13,7 +13,7 @@ public class PlayerBoxVisual : MonoBehaviour
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     spriteRenderer.sprite = fullBoxSprite; // default
 
-    playerBox.OnEnter += (_, _) => spriteRenderer.sprite = fullBoxSprite;
-    playerBox.OnExit += (_, _) => spriteRenderer.sprite = emptyBoxSprite;
+    characterBox.OnEnter += (_, _) => spriteRenderer.sprite = fullBoxSprite;
+    characterBox.OnExit += (_, _) => spriteRenderer.sprite = emptyBoxSprite;
   }
 }

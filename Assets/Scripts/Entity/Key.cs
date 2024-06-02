@@ -7,7 +7,7 @@ public class Key : MonoBehaviour
   public event EventHandler OnPickUp;
   
   [SerializeField] private Lock lockObject;
-  private void OnTriggerEnter2D(Collider2D collider)
+  private void OnTriggerEnter2D(Collider2D col)
   {
     StartCoroutine(MoveObject());
   }

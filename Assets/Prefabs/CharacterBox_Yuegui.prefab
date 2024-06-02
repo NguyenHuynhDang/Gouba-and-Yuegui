@@ -13,6 +13,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 18b948c5b6844a2439e466e295725cf5, type: 3}
     - target: {fileID: 3002944100746419145, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
+      propertyPath: idleSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d99b51974f60a504d9f9be09a491ccb8, type: 3}
+    - target: {fileID: 3002944100746419145, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
       propertyPath: sleepSprite
       value: 
       objectReference: {fileID: 21300000, guid: 5b3565426137e8445bbeb5c11044a91d, type: 3}

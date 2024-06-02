@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerVisual : MonoBehaviour
+public class CharacterVisual : MonoBehaviour
 {
-  [SerializeField] private Character player;
-  [SerializeField] private CharacterBox playerBox;
-  [SerializeField] private Sprite playerSprite;
+  [SerializeField] private Character character;
+  [SerializeField] private CharacterBox characterBox;
+  [SerializeField] private Sprite idleSprite;
   [SerializeField] private Sprite sleepSprite; 
   
   private SpriteRenderer spriteRenderer;
@@ -14,19 +15,19 @@ public class PlayerVisual : MonoBehaviour
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     spriteRenderer.sprite = null;
 
-    playerBox.OnEnter += (_, _) =>
+    characterBox.OnEnter += (_, _) =>
     {
       spriteRenderer.sprite = null;
       isInBox = true;
     };
-    playerBox.OnExit += (_, _) =>
+    characterBox.OnExit += (_, _) =>
     {
-      spriteRenderer.sprite = playerSprite;
+      spriteRenderer.sprite = idleSprite;
       isInBox = false;
     };
 
-    player.OnReachGoal += (sender, args) => { }; //play animation
-    player.OnExitGoal += (sender, args) => { }; // play animation
+    character.OnReachGoal += (sender, args) => { }; //play animation
+    character.OnExitGoal += (sender, args) => { }; // play animation
     
     GameInput.Instance.OnSwitch1 += GameInput_OnSwitch;
     GameInput.Instance.OnSwitch2 += GameInput_OnSwitch;
@@ -34,7 +35,7 @@ public class PlayerVisual : MonoBehaviour
 
   private void GameInput_OnSwitch(object sender, OnSwitchCharacterEventArgs e)
   {
-    if (CharacterManager.NumCharacter == 1 || isInBox || (player && player.HasReachGoal())) return;
-    spriteRenderer.sprite = player.GetCharacterType() != e.Character ? sleepSprite : playerSprite;
+    if (CharacterManager.NumCharacter == 1 || isInBox || (character && character.HasReachGoal())) return;
+    spriteRenderer.sprite = character.GetCharacterType() != e.Character ? sleepSprite : idleSprite;
   }
 }
