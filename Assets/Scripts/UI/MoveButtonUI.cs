@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -38,20 +37,15 @@ public class MoveButtonUI : MonoBehaviour
     leftButtonImage = leftButton.GetComponent<Image>();
     rightButtonImage = rightButton.GetComponent<Image>();
     
-    playerInputActions.Player.Move.performed += Move_performed;
-    playerInputActions.Player.Move.canceled += Move_canceled;
+    playerInputActions.Player.Move.performed += Move_toggle;
+    playerInputActions.Player.Move.canceled += Move_toggle;
   }
 
-  private void Move_canceled(InputAction.CallbackContext obj)
+  private void Move_toggle(InputAction.CallbackContext obj)
   {
     SetButtonColor(obj.ReadValue<Vector2>());
   }
-
-  private void Move_performed(InputAction.CallbackContext obj)
-  {
-    SetButtonColor(obj.ReadValue<Vector2>());
-  }
-
+  
   private void SetButtonColor(Vector2 movementVector)
   {
     if (movementVector.y > 0)

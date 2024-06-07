@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     SceneLoader.Load((Scene)SceneManager.GetActiveScene().buildIndex);
   }
 
-  private bool IsLastLevelUnlock()
+  private bool IsLastLevelUnlock() // is this level the last level to be unlocked
   {
     int currentLevel = SceneManager.GetActiveScene().buildIndex - 1;
     return currentLevel == PlayerPrefs.GetInt(PlayerPrefsKey.NumLevelUnlock, 1);

@@ -4,9 +4,9 @@ public static class SceneLoader
 {
   private static Scene targetScene;
 
-  public static void Load(Scene targetScene)
+  public static void Load(Scene scene)
   {
-    SceneLoader.targetScene = targetScene;
+    SceneLoader.targetScene = scene;
 
     SceneManager.LoadScene(Scene.Loading.ToString());
   }

@@ -7,10 +7,12 @@ public class Key : MonoBehaviour
   public event EventHandler OnPickUp;
   
   [SerializeField] private Lock lockObject;
+  
   private void OnTriggerEnter2D(Collider2D col)
   {
     StartCoroutine(MoveObject());
   }
+  
   private IEnumerator MoveObject()
   {
     float elapsedTime = 0f;
@@ -21,7 +23,8 @@ public class Key : MonoBehaviour
 
     while (elapsedTime < timeToMove)
     {
-      transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / timeToMove);
+      transform.position = Vector3.Lerp(originalPosition,
+        targetPosition, elapsedTime / timeToMove);
       elapsedTime += Time.deltaTime;
       yield return null;
     }

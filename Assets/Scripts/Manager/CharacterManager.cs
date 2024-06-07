@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -46,14 +44,17 @@ public class CharacterManager : MonoBehaviour
 
   private void GameInput_OnSwitch1(object sender, OnSwitchCharacterEventArgs e)
   {
-    currentCharater = characterList[0];
-    currentUI = characterUI[0];
-    arrow.SetParent(currentCharater.transform, false); 
+    if (currentCharater != characterList[0])
+    {
+      currentCharater = characterList[0];
+      currentUI = characterUI[0];
+      SetArrowParent();
+    }
   }
 
   private void GameInput_OnSwitch2(object sender, OnSwitchCharacterEventArgs e)
   {
-    if (characterList.Count > 1)
+    if (characterList.Count > 1 && currentCharater != characterList[1])
     {
       currentCharater = characterList[1];
       currentUI = characterUI[1];

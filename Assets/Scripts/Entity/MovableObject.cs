@@ -47,22 +47,6 @@ public class MovableObject : MonoBehaviour
     List<RaycastHit2D> raycastHit2D = new List<RaycastHit2D>();
     Physics2D.Raycast(transform.position + direction, direction, new ContactFilter2D().NoFilter(), raycastHit2D, 0.01f);
     
-    // if (size > 1)
-    // {
-    //   foreach (var raycast in raycastHit2D)
-    //   {
-    //     MovableObject movableObject = raycast.collider.gameObject.GetComponent<MovableObject>();
-    //     if (!movableObject || movableObject is not Player) continue;
-    //     raycastHit2D.Remove(raycast);
-    //     break;
-    //   }
-    // }
-    //
-    // if (size > 0)
-    // {
-    //   return raycastHit2D[0].collider.gameObject;
-    // }
-
     List<GameObject> output = new List<GameObject>();
     foreach (var raycast in raycastHit2D)
     {
@@ -73,7 +57,15 @@ public class MovableObject : MonoBehaviour
   }
   
   protected GameObject GetCollideObject(Vector3 direction)
-  { 
+  {
+    RaycastHit2D hit = Physics2D.Raycast(transform.position+direction, direction, 0.01f, 1);
+    if (hit)
+    {
+      return hit.collider.gameObject;
+    }
+
+    return null;
+    
     List<RaycastHit2D> raycastHit2D = new List<RaycastHit2D>();
     int size = Physics2D.Raycast(transform.position + direction, direction, new ContactFilter2D().NoFilter(), raycastHit2D, 0.01f);
     

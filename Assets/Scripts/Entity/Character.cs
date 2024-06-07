@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Character : MovableObject
 {
@@ -16,14 +15,14 @@ public class Character : MovableObject
   private Direction firstDirection = Direction.None;
   private Stack<Vector3> moveStack;
   private Stack<Path> pathVisualStack;
-  private BoxCollider2D collider2D;
+  private BoxCollider2D boxCollider2D;
   private bool hasReachGoal;
   
   private void Start()
   {
     moveStack = new Stack<Vector3>();
     pathVisualStack = new Stack<Path>();
-    collider2D = gameObject.GetComponent<BoxCollider2D>();
+    boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
   }
   
   public void MoveCharacter(Vector3 direction)
@@ -69,14 +68,14 @@ public class Character : MovableObject
     {
       hasReachGoal = true;
       goal.OnEnter();
-      collider2D.enabled = false;
+      boxCollider2D.enabled = false;
       OnReachGoal?.Invoke(this, EventArgs.Empty);
     }
     else if (hasReachGoal)
     {
       hasReachGoal = false;
       goal.OnExit();
-      collider2D.enabled = true;
+      boxCollider2D.enabled = true;
       OnExitGoal?.Invoke(this, EventArgs.Empty);
     }
   }
@@ -99,7 +98,7 @@ public class Character : MovableObject
       return false;
 
     Path path = gameObj.GetComponent<Path>();
-    if (path && pathVisualStack.Contains(path))
+    if (path && pathVisualStack.Peek() == path)
     {
       return false;
     }
@@ -116,7 +115,7 @@ public class Character : MovableObject
       return true;
     }
 
-    if (moveStack.Count < moveLimit && !moveStack.Contains(currentPosition + moveDirection)) // going forward
+    if (moveStack.Count < moveLimit) // going forward
     {
       if (pushableBox)
       {
