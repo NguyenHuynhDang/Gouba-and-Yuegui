@@ -40,9 +40,21 @@ PrefabInstance:
       propertyPath: characterType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4147928293753317452, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6964c97593cf3e244bab593faacafe3a, type: 2}
     - target: {fileID: 7022044685362221990, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
       propertyPath: m_Name
       value: CharacterBox_Yuegui
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609879742775355220, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
+      propertyPath: m_Size.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609879742775355220, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
+      propertyPath: m_Size.y
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 7609879742775355220, guid: f6340f3a4fa318840ba4b7c4cb76ad07, type: 3}
       propertyPath: m_Sprite

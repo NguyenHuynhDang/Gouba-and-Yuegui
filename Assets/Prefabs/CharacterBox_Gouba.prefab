@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 9105557367367903968}
   - component: {fileID: 7609879742775355220}
   - component: {fileID: 3002944100746419145}
+  - component: {fileID: 4147928293753317452}
   m_Layer: 6
   m_Name: Character Visual
   m_TagString: Untagged
@@ -201,6 +202,27 @@ MonoBehaviour:
   characterBox: {fileID: 6117053099534639814}
   idleSprite: {fileID: 21300000, guid: 02ad25a04c974344aaef1f905a40dd72, type: 3}
   sleepSprite: {fileID: 21300000, guid: c441884f16461d84ea36689b9f92ce75, type: 3}
+--- !u!95 &4147928293753317452
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916903130236719788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0c0ed9e2661b1547a6000f4b60ac18c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4787479908042952501
 GameObject:
   m_ObjectHideFlags: 0

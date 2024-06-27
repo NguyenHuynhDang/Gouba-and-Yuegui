@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class PushableBox : MovableObject
 {
-  public void PushBox(Vector3 direction)
+  public IEnumerator PushBox(Vector3 direction)
   {
-    StartCoroutine(MoveObject(direction));
+    yield return MoveObject(direction);
   }
 
   public bool CanPush(Vector3 direction)

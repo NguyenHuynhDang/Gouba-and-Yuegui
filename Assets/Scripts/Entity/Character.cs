@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class Character : MovableObject
 {
-  public event EventHandler OnReachGoal;
-  public event EventHandler OnExitGoal;
+  public event EventHandler<OnMoveEventArgs> OnMove;
+  public event EventHandler OnStopMoving;
+  public event EventHandler OnPush;
+  public event EventHandler OnStopPushing;
+  
 
   [SerializeField] private CharacterType characterType;
   [SerializeField] private Goal goal;
@@ -58,7 +61,9 @@ public class Character : MovableObject
 
   private IEnumerator Move(Vector3 direction)
   {
+    OnMove?.Invoke(this, new OnMoveEventArgs {MovementVector = direction});
     yield return StartCoroutine(MoveObject(direction));
+    OnStopMoving?.Invoke(this, EventArgs.Empty);
     OnGoal();
   }
   
@@ -69,14 +74,12 @@ public class Character : MovableObject
       hasReachGoal = true;
       goal.OnEnter();
       boxCollider2D.enabled = false;
-      OnReachGoal?.Invoke(this, EventArgs.Empty);
     }
     else if (hasReachGoal)
     {
       hasReachGoal = false;
       goal.OnExit();
       boxCollider2D.enabled = true;
-      OnExitGoal?.Invoke(this, EventArgs.Empty);
     }
   }
   
@@ -123,7 +126,8 @@ public class Character : MovableObject
         {
           return false;
         }
-        pushableBox.PushBox(moveDirection);
+
+        StartCoroutine(PushBox(pushableBox, moveDirection));
       }
 
       moveStack.Push(currentPosition);
@@ -132,6 +136,13 @@ public class Character : MovableObject
     } 
     
     return false;
+  }
+
+  private IEnumerator PushBox(PushableBox pushableBox, Vector3 moveDirection)
+  {
+    OnPush?.Invoke(this, EventArgs.Empty);
+    yield return pushableBox.PushBox(moveDirection);
+    OnStopPushing?.Invoke(this, EventArgs.Empty);
   }
   
   private void CreatePathVisual(Vector3 moveDirection)

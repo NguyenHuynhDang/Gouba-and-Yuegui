@@ -143,9 +143,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Press the relevant buttons or use the movement keys to consume movement
-    points and guide Gouba and Yuegui. Hold the button to move continuously. The
-    challenge will be deemed a success once all characters have reached the ingredient's
-    position.
+    points and guide Gouba and Yuegui. The challenge will be deemed a success once
+    all characters have reached the ingredient's position.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

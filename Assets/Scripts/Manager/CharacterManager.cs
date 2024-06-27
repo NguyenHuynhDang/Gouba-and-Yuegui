@@ -11,8 +11,7 @@ public class CharacterManager : MonoBehaviour
   
   private Character currentCharater;
   private CharacterButtonUI currentUI;
-  private Vector3 direction;
-  
+
   private void Start()
   {
     NumCharacter = characterList.Count;
@@ -27,19 +26,15 @@ public class CharacterManager : MonoBehaviour
       characterUI[i].SetRemainStepText(characterList[i].GetRemainMove());
     }
 
-    //GameInput.Instance.OnMove += GameInput_OnMove;
+    GameInput.Instance.OnMove += GameInput_OnMove;
     GameInput.Instance.OnSwitch1 += GameInput_OnSwitch1;
     GameInput.Instance.OnSwitch2 += GameInput_OnSwitch2;
   }
 
-  private void Update()
+  private void GameInput_OnMove(object sender, OnMoveEventArgs e)
   {
-    direction = GameInput.Instance.GetMovementVector();
-    if (direction != Vector3.zero)
-    {
-      currentCharater.MoveCharacter(direction);
-      currentUI.SetRemainStepText(currentCharater.GetRemainMove());
-    }
+    currentCharater.MoveCharacter(e.MovementVector); 
+    currentUI.SetRemainStepText(currentCharater.GetRemainMove());
   }
 
   private void GameInput_OnSwitch1(object sender, OnSwitchCharacterEventArgs e)
