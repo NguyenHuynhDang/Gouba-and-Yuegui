@@ -18,7 +18,7 @@
                     "name": "Switch1",
                     "type": "Button",
                     "id": "abe37460-58df-4cca-a33d-04712b94c94f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "Switch2",
                     "type": "Button",
                     "id": "51191793-3561-4e25-a55a-b1c3b347b2f7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -36,7 +36,7 @@
                     "name": "Escape",
                     "type": "Button",
                     "id": "dde68135-bac5-4208-8a47-46064346ad50",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
