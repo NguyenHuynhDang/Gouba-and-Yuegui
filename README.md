@@ -1,1 +1,1 @@
-Unity game project, clone and open with Unity to use 
+Unity game project, clone and open in Unity to use 
