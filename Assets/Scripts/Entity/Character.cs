@@ -101,7 +101,7 @@ public class Character : MovableObject
       return false;
 
     Path path = gameObj.GetComponent<Path>();
-    if (path && pathVisualStack.Peek() == path)
+    if (path && pathVisualStack.Count > 0 && pathVisualStack.Peek() == path)
     {
       return false;
     }

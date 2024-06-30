@@ -17,7 +17,7 @@ public class MainMenuUI : MonoBehaviour
       PlayerPrefs.DeleteKey(PlayerPrefsKey.NumLevelUnlock);
       SceneLoader.Load(Scene.Level1);
     });
-    continueButton.onClick.AddListener(() => levelMenu.SetActive(true));
+    continueButton.onClick.AddListener(() => levelMenu.SetActive(!levelMenu.activeSelf));
     quitButton.onClick.AddListener(Application.Quit);
   }
 }

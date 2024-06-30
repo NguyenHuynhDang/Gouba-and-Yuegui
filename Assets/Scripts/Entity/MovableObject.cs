@@ -58,14 +58,6 @@ public class MovableObject : MonoBehaviour
   
   protected GameObject GetCollideObject(Vector3 direction)
   {
-    RaycastHit2D hit = Physics2D.Raycast(transform.position+direction, direction, 0.01f, 1);
-    if (hit)
-    {
-      return hit.collider.gameObject;
-    }
-
-    return null;
-    
     List<RaycastHit2D> raycastHit2D = new List<RaycastHit2D>();
     int size = Physics2D.Raycast(transform.position + direction, direction, new ContactFilter2D().NoFilter(), raycastHit2D, 0.01f);
     

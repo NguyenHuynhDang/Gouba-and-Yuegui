@@ -29,6 +29,7 @@ public class GameInput : MonoBehaviour
   {
     playerInputActions.Player.Move.performed += _ =>
     {
+      if (GameManager.IsGamePause) return;
       Vector2 movementVector = playerInputActions.Player.Move.ReadValue<Vector2>();
       OnMove?.Invoke(this, new OnMoveEventArgs {MovementVector = Normalize(movementVector)});
     };

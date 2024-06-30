@@ -6172,8 +6172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bb077de8d46f94b8b3d849a015b542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTilemap: {fileID: 0}
-  obstacleTilemap: {fileID: 0}
+  groundTilemap: {fileID: 163935741}
+  obstacleTilemap: {fileID: 2012774264}
 --- !u!50 &1451170947
 Rigidbody2D:
   serializedVersion: 4
