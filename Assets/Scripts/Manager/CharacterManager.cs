@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+  public static event EventHandler OnStopMoving;
   public static int NumCharacter { get; private set; }
   
   [SerializeField] private List<Character> characterList;
@@ -26,9 +28,23 @@ public class CharacterManager : MonoBehaviour
       characterUI[i].SetRemainStepText(characterList[i].GetRemainMove());
     }
 
-    GameInput.Instance.OnMove += GameInput_OnMove;
+    //GameInput.Instance.OnMove += GameInput_OnMove;
     GameInput.Instance.OnSwitch1 += GameInput_OnSwitch1;
     GameInput.Instance.OnSwitch2 += GameInput_OnSwitch2;
+  }
+
+  private void Update()
+  {
+    Vector2 movementVector = GameInput.Instance.GetMovementVector();
+    if (movementVector != Vector2.zero)
+    {
+      currentCharater.MoveCharacter(movementVector); 
+      currentUI.SetRemainStepText(currentCharater.GetRemainMove());
+    }
+    else
+    {
+      OnStopMoving?.Invoke(this, EventArgs.Empty);
+    }
   }
 
   private void GameInput_OnMove(object sender, OnMoveEventArgs e)
@@ -60,5 +76,10 @@ public class CharacterManager : MonoBehaviour
   private void SetArrowParent()
   {
     arrow.SetParent(currentCharater.transform, false);
+  }
+
+  public static void ResetStaticData()
+  {
+    OnStopMoving = null;
   }
 }

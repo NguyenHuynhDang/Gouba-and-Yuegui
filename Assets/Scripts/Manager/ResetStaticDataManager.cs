@@ -11,6 +11,7 @@ public class ResetStaticDataManager : MonoBehaviour
   {
     Goal.ResetStaticData();
     GameClearUI.ResetStaticData();
+    CharacterManager.ResetStaticData();
     RestartUI.ResetStaticData();
     BackMenuUI.ResetStaticData();
   }

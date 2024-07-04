@@ -4,7 +4,6 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
   public static GameInput Instance { get; private set; }
-  public event EventHandler<OnMoveEventArgs> OnMove;
   public event EventHandler<OnSwitchCharacterEventArgs> OnSwitch1;
   public event EventHandler<OnSwitchCharacterEventArgs> OnSwitch2;
   public event EventHandler OnEscape;
@@ -27,12 +26,12 @@ public class GameInput : MonoBehaviour
 
   private void Start()
   {
-    playerInputActions.Player.Move.performed += _ =>
-    {
-      if (GameManager.IsGamePause) return;
-      Vector2 movementVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-      OnMove?.Invoke(this, new OnMoveEventArgs {MovementVector = Normalize(movementVector)});
-    };
+    // playerInputActions.Player.Move.performed += _ =>
+    // {
+    //   if (GameManager.IsGamePause) return;
+    //   Vector2 movementVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+    //   OnMove?.Invoke(this, new OnMoveEventArgs {MovementVector = Normalize(movementVector)});
+    // };
   
     playerInputActions.Player.Switch1.performed += _ =>
     {

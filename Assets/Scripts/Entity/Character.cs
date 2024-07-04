@@ -26,8 +26,17 @@ public class Character : MovableObject
     moveStack = new Stack<Vector3>();
     pathVisualStack = new Stack<Path>();
     boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
+    
+    CharacterManager.OnStopMoving += CharacterManager_OnStopMoving;
   }
-  
+
+  private void CharacterManager_OnStopMoving(object sender, EventArgs e)
+  {
+    if (IsMoving) return;
+    OnStopMoving?.Invoke(this, EventArgs.Empty);
+    OnStopPushing?.Invoke(this, EventArgs.Empty);
+  }
+
   public void MoveCharacter(Vector3 direction)
   {
     if (IsMoving) return;
@@ -41,6 +50,14 @@ public class Character : MovableObject
       {
         StartCoroutine(Move(direction));
       }
+      else
+      {
+        CharacterManager_OnStopMoving(this, EventArgs.Empty);
+      }
+    }
+    else
+    {
+      CharacterManager_OnStopMoving(this, EventArgs.Empty);
     }
   }
 
@@ -63,8 +80,13 @@ public class Character : MovableObject
   {
     OnMove?.Invoke(this, new OnMoveEventArgs {MovementVector = direction});
     yield return StartCoroutine(MoveObject(direction));
-    OnStopMoving?.Invoke(this, EventArgs.Empty);
     OnGoal();
+  }
+  
+  private IEnumerator PushBox(PushableBox pushableBox, Vector3 moveDirection)
+  {
+    OnPush?.Invoke(this, EventArgs.Empty);
+    yield return pushableBox.PushBox(moveDirection);
   }
   
   private void OnGoal()
@@ -108,11 +130,13 @@ public class Character : MovableObject
 
     return true;
   }
+  
   private bool CanMove(Vector3 moveDirection, PushableBox pushableBox)
   {
     Vector3 currentPosition = transform.position;
     if (moveStack.Count > 0 && currentPosition + moveDirection == moveStack.Peek()) // going back
     {
+      if (!pushableBox) OnStopPushing?.Invoke(this, EventArgs.Empty);
       moveStack.Pop();
       DestroyPathVisual();
       return true;
@@ -129,6 +153,8 @@ public class Character : MovableObject
 
         StartCoroutine(PushBox(pushableBox, moveDirection));
       }
+      else
+        OnStopPushing?.Invoke(this, EventArgs.Empty);
 
       moveStack.Push(currentPosition);
       CreatePathVisual(moveDirection);
@@ -138,13 +164,6 @@ public class Character : MovableObject
     return false;
   }
 
-  private IEnumerator PushBox(PushableBox pushableBox, Vector3 moveDirection)
-  {
-    OnPush?.Invoke(this, EventArgs.Empty);
-    yield return pushableBox.PushBox(moveDirection);
-    OnStopPushing?.Invoke(this, EventArgs.Empty);
-  }
-  
   private void CreatePathVisual(Vector3 moveDirection)
   {
     Direction curDirection = ToDirection(moveDirection);
