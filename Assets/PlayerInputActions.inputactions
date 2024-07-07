@@ -45,7 +45,16 @@
                     "name": "Replay",
                     "type": "Button",
                     "id": "9ed752d0-2bb0-4df8-8814-7f33ad6a0407",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Help",
+                    "type": "Button",
+                    "id": "dc31ba95-532a-4545-b661-5ea0b59df320",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -203,6 +212,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Replay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "782551ef-7d7a-47a3-8443-3483be796288",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Help",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

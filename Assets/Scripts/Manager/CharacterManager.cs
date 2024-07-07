@@ -38,11 +38,13 @@ public class CharacterManager : MonoBehaviour
     Vector2 movementVector = GameInput.Instance.GetMovementVector();
     if (movementVector != Vector2.zero)
     {
+      if (!GameManager.IsGamePlaying) return;
       currentCharater.MoveCharacter(movementVector); 
       currentUI.SetRemainStepText(currentCharater.GetRemainMove());
     }
     else
     {
+      if (!GameManager.IsGamePlaying) return;
       OnStopMoving?.Invoke(this, EventArgs.Empty);
     }
   }

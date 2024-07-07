@@ -1,32 +1,44 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
 public class TutorialUI : MonoBehaviour
 {
-  [SerializeField] private List<GameObject> tutorials;
-  private int currentIndex;
+  public static event EventHandler OnHide;
+  
+  [SerializeField] private Tutorial tutorial;
+  [SerializeField] private int tutorialIndex;
+ 
   private GameObject currentTutorial;
   
   private void Start()
   {
     Show();
-    currentIndex = 0;
-    Instantiate(currentIndex);
-    
+    if (tutorialIndex < tutorial.Size())
+      Instantiate(tutorialIndex);
+    else
+      Hide();
+
+    GameInput.Instance.OnHelp += (_, _) =>
+    {
+      tutorialIndex = 0;
+      Show();
+      if (tutorialIndex < tutorial.Size())
+        Instantiate(tutorialIndex);
+      else
+        Hide();
+    };
+
     InputSystem.onAnyButtonPress.Call(_ =>
     {
-      if (!this)
-      {
-        return;
-      }
+      if (!this) return;
       Destroy(currentTutorial);
 
-      if (currentIndex + 1 < tutorials.Count)
+      if (tutorialIndex + 1 < tutorial.Size())
       {
-        currentIndex++;
-        Instantiate(currentIndex);
+        tutorialIndex++;
+        Instantiate(tutorialIndex);
       }
       else
       {
@@ -37,7 +49,7 @@ public class TutorialUI : MonoBehaviour
   
   private void Instantiate(int index)
   {
-    currentTutorial = Instantiate(tutorials[index], Vector3.zero, Quaternion.identity);
+    currentTutorial = Instantiate(tutorial.GetTutorial(index), Vector3.zero, Quaternion.identity);
     currentTutorial.transform.SetParent(transform, false);
   }
 
@@ -48,6 +60,7 @@ public class TutorialUI : MonoBehaviour
 
   private void Hide()
   {
+    OnHide?.Invoke(this, EventArgs.Empty);
     gameObject.SetActive(false);
   }
 }

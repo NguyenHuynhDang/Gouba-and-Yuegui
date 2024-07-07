@@ -68,7 +68,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Replay"",
                     ""type"": ""Button"",
                     ""id"": ""9ed752d0-2bb0-4df8-8814-7f33ad6a0407"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Help"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc31ba95-532a-4545-b661-5ea0b59df320"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -228,6 +237,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Replay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""782551ef-7d7a-47a3-8443-3483be796288"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Help"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +261,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Switch2 = m_Player.FindAction("Switch2", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Replay = m_Player.FindAction("Replay", throwIfNotFound: true);
+        m_Player_Help = m_Player.FindAction("Help", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -312,6 +333,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Switch2;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Replay;
+    private readonly InputAction m_Player_Help;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -321,6 +343,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Switch2 => m_Wrapper.m_Player_Switch2;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @Replay => m_Wrapper.m_Player_Replay;
+        public InputAction @Help => m_Wrapper.m_Player_Help;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -345,6 +368,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Replay.started += instance.OnReplay;
             @Replay.performed += instance.OnReplay;
             @Replay.canceled += instance.OnReplay;
+            @Help.started += instance.OnHelp;
+            @Help.performed += instance.OnHelp;
+            @Help.canceled += instance.OnHelp;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -364,6 +390,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Replay.started -= instance.OnReplay;
             @Replay.performed -= instance.OnReplay;
             @Replay.canceled -= instance.OnReplay;
+            @Help.started -= instance.OnHelp;
+            @Help.performed -= instance.OnHelp;
+            @Help.canceled -= instance.OnHelp;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -388,5 +417,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSwitch2(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnReplay(InputAction.CallbackContext context);
+        void OnHelp(InputAction.CallbackContext context);
     }
 }

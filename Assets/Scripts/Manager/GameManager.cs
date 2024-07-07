@@ -5,20 +5,34 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
   public static bool IsGamePause { get; private set; }
+  public static bool IsGamePlaying { get; private set; }
   
   private void Start()
   {
+    IsGamePlaying = false;
+    
     GameInput.Instance.OnEscape += (_, _) =>
     {
       IsGamePause = !IsGamePause;
       Time.timeScale = 1 - Time.timeScale;
     };
+
+    GameInput.Instance.OnHelp += (_, _) =>
+    {
+      IsGamePlaying = false;
+    };
     
+    TutorialUI.OnHide += TutorialUI_OnHide;
     Goal.OnGameClear += OnGameClear;
     RestartUI.OnRestart += OnRestart;
     GameClearUI.OnNextLevel += OnNextLevel;
     GameClearUI.OnMainMenu += OnMainMenu;
     BackMenuUI.OnMainMenu += OnMainMenu;
+  }
+
+  private void TutorialUI_OnHide(object sender, EventArgs e)
+  {
+    IsGamePlaying = true;
   }
 
   private void OnMainMenu(object sender, EventArgs e)
